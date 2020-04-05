@@ -177,22 +177,33 @@
           </ul>
         </div>
       </div>
-      <div id="section7" ref="section7" class="section">
+      <div id="section7" ref="section7" class="section section7">
         <h2>联系我</h2>
         <hr>
         <div>
+          <div class="showMsg center">
+            <span class="showAddress">{{showAddress}}</span>
+          </div>
           <Row type="flex" justify="space-around">
             <Col :xs="{ span: 12}" :lg="{ span: 6}">
-         <img src="./../assets/images/github.png" alt="">
+              <div class="center " @mouseenter="enter('Github@Aarunfly')" @mouseleave="leav">
+                <img src="./../assets/images/github.png" alt="">
+              </div>
             </Col>
             <Col :xs="{ span: 12}" :lg="{ span: 6}">
-          <img src="./../assets/images/weibo.png" alt="">
+              <div class="center "  @mouseenter="enter('微博@Anakei')" @mouseleave="leav()">
+                <img src="./../assets/images/weibo.png" alt="">
+              </div>
             </Col>
             <Col :xs="{ span: 12}" :lg="{ span: 6}">
-              <img src="./../assets/images/weichar.png" alt="">
+              <div class="center "  @mouseenter="enter('微信@DYF1996918')" @mouseleave="leav()">
+                <img src="./../assets/images/weichar.png" alt="">
+              </div>
             </Col>
             <Col :xs="{ span: 12}" :lg="{ span: 6}">
-              <img src="./../assets/images/zhihu.png" alt="">
+              <div class="center"  @mouseenter="enter('知乎@艺匠')" @mouseleave="leav()">
+                <img src="./../assets/images/zhihu.png" alt="">
+              </div>
             </Col>
           </Row>
         </div>
@@ -204,7 +215,7 @@
 </template>
 
 <script>
-import Echarts from "../components/Echarts";
+  import Echarts from "../components/Echarts";
 
   export default {
     data() {
@@ -216,6 +227,7 @@ import Echarts from "../components/Echarts";
         top5: 0,
         top6: 0,
         top7: 0,
+        showAddress:"联系地址"
       }
 
     },
@@ -298,15 +310,23 @@ import Echarts from "../components/Echarts";
         $('html,body').animate({
           scrollTop: _top
         }, 500);
-      }
-    },
+      },
+      //鼠标进入
+      enter(textDetail) {
+        this.showAddress = textDetail;
+      },
+        //地址-鼠标离开事件
+        leav(){
+          this.showAddress="联系地址"
+        },
+      },
 
 
-    destroyed() {//离开该页面需要移除这个监听的事件
-      window.removeEventListener('scroll', this.handleScroll)
-    },
+      destroyed() {//离开该页面需要移除这个监听的事件
+        window.removeEventListener('scroll', this.handleScroll)
+      },
 
-  }
+    }
 </script>
 
 <style lang="less" scoped>
@@ -382,7 +402,6 @@ import Echarts from "../components/Echarts";
   #section3 {
     background: rgba(255, 255, 255, 0.1);
     background: url("../assets/images/bgd-1.png") no-repeat center;
-
     background-attachment: fixed;
   }
 
@@ -724,5 +743,26 @@ import Echarts from "../components/Echarts";
     }
 
 
+  }
+  .section7{
+    .showMsg{
+      width: 100%;
+      margin-bottom: 100px;
+      span{
+        display: inline-block;
+        padding: 10px;
+        border-radius: 8px;
+        color: white;
+        font-size:16px;
+        font-weight: bold;
+        background:rgba(12,12,12,0.3);
+        text-align: center;
+
+      }
+    }
+    img{
+      width: 100px;
+      height: 100px;
+    }
   }
 </style>
