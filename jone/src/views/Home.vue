@@ -7,7 +7,8 @@
           <h3 class="fade fadesin2 animated pulse">一个放眼于世界的Fe工程师</h3>
           <span id="adMe" class="active fade fadesin3 animated bounceInLeft"
                 @click="getPageAbout(0)">关于我</span>
-          <span id="myPro" class="fade fadesin3 animated bounceInRight" @click="getPageAbout(2)">我的作品</span>
+         <router-link to="./technology"> <span id="myPro" class="fade fadesin3 animated bounceInRight">武器库</span></router-link>
+
         </div>
         <ul class="bg-img">
           <li class="show"></li>
@@ -207,6 +208,9 @@
             </Col>
           </Row>
         </div>
+        <div class="beian">
+          <p><a href="http://www.beian.miit.gov.cn/">京ICP备18058556号</a></p>
+        </div>
       </div>
     </div>
 
@@ -227,21 +231,30 @@
         top5: 0,
         top6: 0,
         top7: 0,
-        showAddress:"联系地址"
+        showAddress:"联系地址",
+        all:[{name:"1",key:"1"},{name:"2",key:"2"},{name:"3",key:"3"}],
+        b:[{name:"1",key:"1"},{name:"3",key:"3"}],
+        //       all:[1,2,3,4],
+        //   b:[1,2,4]
       }
 
     },
     components:{
       Echarts,
     },
-    mounted() {
 
+    created() {
+
+    },
+    mounted() {
       this.getPagePostion();
       window.addEventListener('scroll', this.handleScroll);
       this.handleScroll();
       this.changeBgPic();
+     
     },
     methods: {
+
 
       getPagePostion() {
         this.top1 = $('#section1').offset().top ;
@@ -315,18 +328,18 @@
       enter(textDetail) {
         this.showAddress = textDetail;
       },
-        //地址-鼠标离开事件
-        leav(){
-          this.showAddress="联系地址"
-        },
+      //地址-鼠标离开事件
+      leav(){
+        this.showAddress="联系地址"
       },
+    },
 
 
-      destroyed() {//离开该页面需要移除这个监听的事件
-        window.removeEventListener('scroll', this.handleScroll)
-      },
+    destroyed() {//离开该页面需要移除这个监听的事件
+      window.removeEventListener('scroll', this.handleScroll)
+    },
 
-    }
+  }
 </script>
 
 <style lang="less" scoped>
@@ -401,7 +414,7 @@
 
   #section3 {
     background: rgba(255, 255, 255, 0.1);
-    background: url("../assets/images/bgd-1.png") no-repeat center;
+    background: url("../assets/images/bgd-2.png") no-repeat center;
     background-attachment: fixed;
   }
 
@@ -412,7 +425,7 @@
   }
 
   #section7 {
-    background: url("../assets/images/bgd-1.png") no-repeat center;
+    background: url("../assets/images/bgd-2.png") no-repeat center;
 
     background-attachment: fixed;
   }
@@ -763,6 +776,21 @@
     img{
       width: 100px;
       height: 100px;
+    }
+    .beian{
+      width: 100%;
+      position: absolute;
+      bottom: 50px;
+      left: 0px;
+      text-align: center;
+      p{
+        text-align: center;
+        a{
+          color: #2c3e50;
+        }
+      }
+
+
     }
   }
 </style>
